@@ -1,10 +1,9 @@
 package com.Elchemy.Assignment.api.service;
 
-import java.util.List;
-import java.util.Optional;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Component;
 
 import com.Elchemy.Assignment.api.dao.CustomerRepository;
@@ -20,8 +19,18 @@ public class CustomerService {
 		return customerRepo.save(customer);
 	}
 	
-	public boolean validateCustomer(String email, String password) {
+	private void createSession(HttpServletRequest request, Customer customer) {
+		HttpSession session = request.getSession(true);
+		session.setAttribute("id", customer.getId());
+		session.setAttribute("email", customer.getEmail());
+		session.setAttribute("name", customer.getName());
+	}
+	
+	public boolean validateCustomer(String email, String password, HttpServletRequest request) {
 		Customer customer = customerRepo.getByEmail(email, password);
-		return customer != null;
+		boolean isValid = customer != null;
+		if(isValid)
+			createSession(request, customer);
+		return isValid;
 	}
 }

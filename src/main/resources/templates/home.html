@@ -1,9 +1,85 @@
 <!DOCTYPE html>
 <html>
-    <head>
-       home
-    </head>
-    <body>
-        Welcome Customer : ${id}
-    </body>
+<style>
+	body {
+		font-family: Arial, Helvetica, sans-serif;
+		padding: 16px;
+	}
+
+	* {
+		box-sizing: border-box
+	}
+	
+	button {
+		background-color: #04AA6D;
+		color: white;
+		padding: 14px 20px;
+		margin: 8px 0;
+		border: none;
+		cursor: pointer;
+		opacity: 0.9;
+	}
+	
+	table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+	
+</style>
+<script>
+function addCommLog() {
+	let conversation = prompt("Please enter the conversation", "Eg: CXs phone is broken");
+	console.log(conversation);
+	fetch("/customer/commLog",{
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    mode: 'cors',
+    method: "POST",
+    body: JSON.stringify({conversation})
+}).then(() => alert("Log saved")).catch(() => alert("failed to save log"));
+}
+
+</script>
+
+<body style="border: 1px solid #ccc;">
+		<div class="container">
+		<h1 th:text= "'Welcome ' + ${name} "/>
+			<div style="display: flex; flex-direction: row; align-items:center; justify-content: space-between;">
+				<h2>Your Communication history</h2>
+				<div>
+				<a th:unless="${#strings.isEmpty(email)}" th:href="'mailto:' + ${email}"><button>Send email</button></a>
+				<button onclick="addCommLog()">Add communication log</button>
+				</div>
+			</div>
+			<table>
+				<tr>
+					<th>Date</th>
+					<th>Conversation</th>
+				</tr>
+				<tr th:if="${communications.empty}">
+            		<td colspan="2"> Sorry! No records found </td>
+        		</tr>
+				<tr th:each="communication: ${communications}">
+    				<td th:text="${communication.time}"></td>
+    				<td th:text="${communication.conversation}"></td>
+				</tr>
+			</table>
+			
+		</div>
+
+</body>
+
 </html>

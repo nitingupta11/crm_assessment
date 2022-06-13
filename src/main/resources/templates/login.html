@@ -45,12 +45,7 @@
 		opacity: 1;
 	}
 
-	.login {
-		padding: 14px 20px;
-		background-color: #0000ff;
-	}
-
-	.login,
+	.cancelbtn,
 	.signupbtn {
 		float: left;
 		width: 50%;
@@ -68,34 +63,34 @@
 
 	@media screen and (max-width: 300px) {
 
-		.login,
+		.cancelbtn,
 		.signupbtn {
 			width: 100%;
 		}
 	}
 </style>
 
-<body>
+<body style="border: 1px solid #ccc;">
 
-	<form action="http://localhost:8080/customer/loginRequest" style="border:1px solid #ccc">
+	<form action="http://localhost:8080/customer/loginRequest" method="POST">
 		<div class="container">
-			<h1>Elchemy</h1>
-
+			<h1>Welcome to Home</h1>
+			<p>Please fill in this form.</p>
 			<hr>
 
-			<label for="email"><b>Email</b></label>
+						<label for="email"><b>Email</b></label>
 			<input type="text" placeholder="Enter Email" name="email" required>
 
 			<label for="psw"><b>Password</b></label>
 			<input type="password" placeholder="Enter Password" name="psw" required>
-
-
-			<div class="clearfix">
-				<button type="submit" class="login">Lgn</button>		
-			</div>
+			<label style ="color: red; text-align: center;" ><b th:text="${message}"/></label>
+			<button type="submit">Login</button>
 		</div>
 	</form>
-	<a href="http://localhost:8080/customer/signup"><button type="submit" class="signupbtn">Sign Up</button></a>
+
+	<div class="clearfix" >
+		<a href="http://localhost:8080/customer/signup"><button type="submit" class="signupbtn" style = "width: calc(100% - 32px) !important; margin: 8px 8px; margin: 16px;">Sign Up</button></a>
+	</div>
 
 </body>
 

@@ -86,8 +86,8 @@
 			<label for="name"><b>Name</b><label>
 					<input type="text" placeholder="Enter Name" name="name" required>
 
-					<label for="email"><b>Email</b></label>
-					<input type="email" placeholder="Enter Email" name="email">
+								<label for="email"><b>Email</b></label>
+			<input type="text" placeholder="Enter Email" name="email" required pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$">
 
 					<label for="psw"><b>Password</b></label>
 					<input type="password" placeholder="Enter Password" name="password">
@@ -99,7 +99,7 @@
 							<input type="text" placeholder="Enter Address" name="address">
 
 							<label for="contactNumber"><b>ContactNumber</b><label>
-									<input type="tel" placeholder="Enter ContactNumber" name="contactNumber" pattern="[0-9]{10}" required>
+									<input type="text" placeholder="Contact number" name="contactNumber" pattern="[0-9]{10}" maxlength="10">
 
 									<label for="gst"><b>GST</b><label>
 											<input type="text" placeholder="Enter GST" name="gst" required>
