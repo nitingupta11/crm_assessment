@@ -78,18 +78,19 @@
 			<p>Please fill in this form.</p>
 			<hr>
 
-						<label for="email"><b>Email</b></label>
+			<label for="email"><b>Email</b></label>
 			<input type="text" placeholder="Enter Email" name="email" required>
 
 			<label for="psw"><b>Password</b></label>
 			<input type="password" placeholder="Enter Password" name="psw" required>
-			<label style ="color: red; text-align: center;" ><b th:text="${message}"/></label>
+			<label style="color: red; text-align: center;"><b th:text="${message}" /></label>
 			<button type="submit">Login</button>
 		</div>
 	</form>
 
-	<div class="clearfix" >
-		<a href="http://localhost:8080/customer/signup"><button type="submit" class="signupbtn" style = "width: calc(100% - 32px) !important; margin: 8px 8px; margin: 16px;">Sign Up</button></a>
+	<div class="clearfix">
+		<a href="http://localhost:8080/customer/signup"><button type="submit" class="signupbtn"
+				style="width: calc(100% - 32px) !important; margin: 8px 8px; margin: 16px;">Sign Up</button></a>
 	</div>
 
 </body>
